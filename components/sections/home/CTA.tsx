@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function CTA() {
   return (
-    <section className="py-16 bg-gradient-to-r from-accent to-accent-dark text-accent-foreground">
+    <section className="py-28 bg-gradient-to-r from-amber-600 to-yellow-300 text-accent-foreground">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Ready to Find Your Perfect Truck?

@@ -147,7 +147,7 @@ export default function TruckDetailPage({ params }: PageProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
                   <Image
-                    src={truck.images[0] || '/placeholder.svg'}
+                    src={'/images/ford.jpg'}
                     alt={`${truck.year} ${truck.make} ${truck.model}`}
                     width={600}
                     height={400}
@@ -157,7 +157,7 @@ export default function TruckDetailPage({ params }: PageProps) {
                 {truck.images.slice(1, 3).map((image, index) => (
                   <Image
                     key={index}
-                    src={image || '/placeholder.svg'}
+                    src={'/images/ford.jpg'}
                     alt={`${truck.year} ${truck.make} ${truck.model} - Image ${
                       index + 2
                     }`}
@@ -181,7 +181,7 @@ export default function TruckDetailPage({ params }: PageProps) {
                       Stock #{truck.stockNumber}
                     </p>
                   </div>
-                  <Badge className="bg-blue-600">{truck.condition}</Badge>
+                  <Badge className="bg-amber-600">{truck.condition}</Badge>
                 </div>
               </CardHeader>
               <CardContent>
@@ -230,7 +230,7 @@ export default function TruckDetailPage({ params }: PageProps) {
             </Card>
 
             {/* Specifications */}
-            <Card className="mb-8">
+            {/* <Card className="mb-8">
               <CardHeader>
                 <CardTitle>Specifications</CardTitle>
               </CardHeader>
@@ -262,10 +262,10 @@ export default function TruckDetailPage({ params }: PageProps) {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Features */}
-            <Card>
+            {/* <Card>
               <CardHeader>
                 <CardTitle>Key Features</CardTitle>
               </CardHeader>
@@ -279,7 +279,7 @@ export default function TruckDetailPage({ params }: PageProps) {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
 
           {/* Sidebar */}
@@ -288,11 +288,11 @@ export default function TruckDetailPage({ params }: PageProps) {
             <Card className="mb-6 sticky top-24">
               <CardHeader>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">
-                    ${truck.price.toLocaleString()}
+                  <div className="text-3xl font-bold text-amber-600 mb-2">
+                    R{truck.price.toLocaleString()}
                   </div>
                   <p className="text-gray-600">
-                    {truck.mileage.toLocaleString()} miles
+                    {truck.mileage.toLocaleString()} km
                   </p>
                 </div>
               </CardHeader>
@@ -319,7 +319,7 @@ export default function TruckDetailPage({ params }: PageProps) {
             </Card>
 
             {/* Warranty */}
-            <Card className="mb-6">
+            {/* <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-green-600" />
@@ -329,7 +329,7 @@ export default function TruckDetailPage({ params }: PageProps) {
               <CardContent>
                 <p className="text-sm text-gray-600">{truck.warranty}</p>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Dealer Rating */}
             <Card>
@@ -350,7 +350,7 @@ export default function TruckDetailPage({ params }: PageProps) {
                     ))}
                   </div>
                   <span className="text-sm text-gray-600">
-                    5.0 (247 reviews)
+                    4.1 (211 reviews)
                   </span>
                 </div>
                 <p className="text-sm text-gray-600">

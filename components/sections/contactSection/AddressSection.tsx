@@ -19,7 +19,7 @@ export default function AddressSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader className="text-center">
-              <Phone className="h-8 w-8 text-black mx-auto mb-2" />
+              <Phone className="h-8 w-8 text-amber-300 mx-auto mb-2" />
               <CardTitle>Call Us</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
@@ -30,7 +30,7 @@ export default function AddressSection() {
           </Card>
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader className="text-center">
-              <Mail className="h-8 w-8 text-black mx-auto mb-2" />
+              <Mail className="h-8 w-8 text-amber-300 mx-auto mb-2" />
               <CardTitle>Email Us</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
@@ -40,7 +40,7 @@ export default function AddressSection() {
           </Card>
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader className="text-center">
-              <MapPin className="h-8 w-8 text-black mx-auto mb-2" />
+              <MapPin className="h-8 w-8 text-amber-300 mx-auto mb-2" />
               <CardTitle>Visit Us</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
@@ -48,9 +48,6 @@ export default function AddressSection() {
                 9 Chrislou Cresent, Alberton North
               </p>
               <p className="text-gray-600">Alberton, Gauteng, 1449</p>
-              <Button asChild className="mt-2" size="sm">
-                <Link href="#">Get Directions</Link>
-              </Button>
             </CardContent>
           </Card>
         </div>

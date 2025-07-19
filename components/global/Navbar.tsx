@@ -15,8 +15,8 @@ import {
 
 const NavLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
   { name: 'Inventory', href: '/inventory' },
+  { name: 'Trade-In', href: '/trade-in' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -47,7 +47,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden md:mx-auto md:flex space-x-6">
+          <div className="hidden lg:mx-auto lg:flex space-x-6">
             {NavLinks.map((link) => (
               <Link
                 key={link.name}
@@ -60,7 +60,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Dropdown */}
-          <div className="hidden md:flex items-center space-x-4 relative">
+          <div className="hidden lg:flex items-center space-x-4 relative">
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-2 px-3 py-2 text-gray-800 hover:text-gray-600 rounded-md transition">
                 <User size={18} />
@@ -70,17 +70,25 @@ export default function Navbar() {
               <DropdownMenuContent className="w-48 mt-2 bg-white shadow-lg rounded-md border border-gray-200">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Users</DropdownMenuItem>
-                <DropdownMenuItem>Inventory</DropdownMenuItem>
-                <DropdownMenuItem>Analytics</DropdownMenuItem>
+                <Link href="/dashboard">
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard/profile">
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard/users">
+                  <DropdownMenuItem>Users</DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard/inventory">
+                  <DropdownMenuItem>Inventory</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
@@ -90,7 +98,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-16 right-0 w-full bg-white shadow-md z-50">
+          <div className="lg:hidden absolute top-16 right-0 w-full bg-white shadow-md z-50">
             <div className="flex flex-col items-center space-y-4 px-4 py-4">
               {NavLinks.map((link) => (
                 <Link
@@ -111,10 +119,18 @@ export default function Navbar() {
                 <DropdownMenuContent className="w-96 mt-2 bg-white shadow-lg rounded-md border border-gray-200">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Users</DropdownMenuItem>
-                  <DropdownMenuItem>Inventory</DropdownMenuItem>
-                  <DropdownMenuItem>Analytics</DropdownMenuItem>
+                  <Link href="/dashboard">
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/profile">
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/users">
+                    <DropdownMenuItem>Users</DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/inventory">
+                    <DropdownMenuItem>Inventory</DropdownMenuItem>
+                  </Link>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>

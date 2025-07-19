@@ -12,7 +12,7 @@ const featuredTrucks = [
     year: 2023,
     price: 45000,
     mileage: 12000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Crew Cab', 'V8 Engine'],
   },
@@ -23,7 +23,7 @@ const featuredTrucks = [
     year: 2024,
     price: 52000,
     mileage: 5000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Extended Cab', 'Turbo Diesel'],
   },
@@ -34,7 +34,7 @@ const featuredTrucks = [
     year: 2023,
     price: 48000,
     mileage: 8000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Quad Cab', 'HEMI V8'],
   },
@@ -66,7 +66,7 @@ export default function Featured() {
                   height={300}
                   className="w-full h-48 object-cover"
                 />
-                <Badge className="absolute top-2 right-2 bg-blue-600">
+                <Badge className="absolute top-2 right-2 bg-amber-600">
                   {truck.condition}
                 </Badge>
               </div>
@@ -75,11 +75,11 @@ export default function Featured() {
                   {truck.year} {truck.make} {truck.model}
                 </h3>
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-2xl font-bold text-blue-600">
-                    ${truck.price.toLocaleString()}
+                  <span className="text-2xl font-bold text-yellow-600">
+                    R{truck.price.toLocaleString()}
                   </span>
                   <span className="text-gray-600">
-                    {truck.mileage.toLocaleString()} miles
+                    {truck.mileage.toLocaleString()} km
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-4">

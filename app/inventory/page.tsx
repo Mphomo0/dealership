@@ -24,7 +24,7 @@ const trucks = [
     year: 2023,
     price: 45000,
     mileage: 12000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Crew Cab', 'V8 Engine'],
     fuelType: 'Gasoline',
@@ -37,7 +37,7 @@ const trucks = [
     year: 2024,
     price: 52000,
     mileage: 5000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Extended Cab', 'Turbo Diesel'],
     fuelType: 'Diesel',
@@ -50,7 +50,7 @@ const trucks = [
     year: 2023,
     price: 48000,
     mileage: 8000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Quad Cab', 'HEMI V8'],
     fuelType: 'Gasoline',
@@ -63,7 +63,7 @@ const trucks = [
     year: 2022,
     price: 58000,
     mileage: 15000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Crew Cab', 'Power Stroke Diesel'],
     fuelType: 'Diesel',
@@ -76,7 +76,7 @@ const trucks = [
     year: 2023,
     price: 49000,
     mileage: 9000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Double Cab', 'V8 Engine'],
     fuelType: 'Gasoline',
@@ -89,7 +89,7 @@ const trucks = [
     year: 2023,
     price: 38000,
     mileage: 7000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Double Cab', 'V6 Engine'],
     fuelType: 'Gasoline',
@@ -102,7 +102,7 @@ const trucks = [
     year: 2022,
     price: 42000,
     mileage: 18000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Crew Cab', 'V8 Engine'],
     fuelType: 'Gasoline',
@@ -115,7 +115,7 @@ const trucks = [
     year: 2024,
     price: 35000,
     mileage: 3000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Extended Cab', 'Turbo 4-Cylinder'],
     fuelType: 'Gasoline',
@@ -128,7 +128,7 @@ const trucks = [
     year: 2022,
     price: 62000,
     mileage: 22000,
-    image: '/placeholder.svg?height=300&width=400',
+    image: '/images/ford.jpg',
     condition: 'Used',
     features: ['4WD', 'Crew Cab', 'Cummins Diesel'],
     fuelType: 'Diesel',
@@ -193,7 +193,7 @@ export default function Inventory() {
               />
             </div>
             <Select value={makeFilter} onValueChange={setMakeFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="All Makes" />
               </SelectTrigger>
               <SelectContent>
@@ -207,7 +207,7 @@ export default function Inventory() {
               </SelectContent>
             </Select>
             <Select value={priceFilter} onValueChange={setPriceFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="All Prices" />
               </SelectTrigger>
               <SelectContent>
@@ -218,7 +218,7 @@ export default function Inventory() {
               </SelectContent>
             </Select>
             <Select value={fuelFilter} onValueChange={setFuelFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="All Fuel Types" />
               </SelectTrigger>
               <SelectContent>
@@ -252,7 +252,7 @@ export default function Inventory() {
                   height={300}
                   className="w-full h-48 object-cover"
                 />
-                <Badge className="absolute top-2 right-2 bg-blue-600">
+                <Badge className="absolute top-2 right-2 bg-amber-600">
                   {truck.condition}
                 </Badge>
               </div>
@@ -261,11 +261,11 @@ export default function Inventory() {
                   {truck.year} {truck.make} {truck.model}
                 </h3>
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-2xl font-bold text-blue-600">
-                    ${truck.price.toLocaleString()}
+                  <span className="text-2xl font-bold text-yellow-600">
+                    R{truck.price.toLocaleString()}
                   </span>
                   <span className="text-gray-600">
-                    {truck.mileage.toLocaleString()} miles
+                    {truck.mileage.toLocaleString()} km
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 mb-4 text-sm text-gray-600">

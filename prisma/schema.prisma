@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  password  String
+  role      String  @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
+model inventory {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  make         String
+  model        String
+  year         Int
+  price        Float
+  mileage      Float?
+  fuelType     FuelType?
+  condition    Condition
+  transmission Transmission?
+  images       Json 
+  status       Status
+  description  String
+  slug         String        @unique
+  featured     Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+enum FuelType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  HYBRID
+}
+
+enum Condition {
+  NEW
+  USED
+}
+
+enum Transmission {
+  AUTOMATIC
+  MANUAL
+}
+
+enum Status {
+  AVAILABLE
+  SOLD
+  PENDING
+  RESERVED
+}
