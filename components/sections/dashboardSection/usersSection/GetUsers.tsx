@@ -12,6 +12,7 @@ import {
 import { SquarePen, Trash } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 
 interface User {
   id: string
@@ -27,7 +28,9 @@ export default function GetUsers() {
   const [formUser, setFormUser] = useState<Partial<User> | null>(null)
   const [isEditing, setIsEditing] = useState(false)
   const [showForm, setShowForm] = useState(false)
-  const [showPassword, setShowPassword] = useState(false) // State for password visibility toggle
+  const [showPassword, setShowPassword] = useState(false)
+
+  const { data: session } = useSession() // State for password visibility toggle
 
   const fetchUsers = async () => {
     try {
@@ -53,7 +56,14 @@ export default function GetUsers() {
   }
 
   const handleDelete = async (id: string) => {
+    if (session?.user?.id === id) {
+      toast.error('You cannot delete your own account.')
+      return
+    }
+
+    // Confirm deletion
     if (!confirm('Are you sure you want to delete this user?')) return
+
     try {
       const res = await fetch(`/api/users/${id}`, { method: 'DELETE' })
       if (!res.ok) throw new Error('Failed to delete user')
@@ -122,20 +132,24 @@ export default function GetUsers() {
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.role}</TableCell>
                     <TableCell className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleEdit(user)}
-                        aria-label="Edit user"
-                        className="text-blue-500 hover:text-blue-700"
-                      >
-                        <SquarePen size={18} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(user.id)}
-                        aria-label="Delete user"
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <Trash size={18} />
-                      </button>
+                      {session && session.user?.role === 'SUPER_ADMIN' && (
+                        <>
+                          <button
+                            onClick={() => handleEdit(user)}
+                            aria-label="Edit user"
+                            className="text-blue-500 hover:text-blue-700"
+                          >
+                            <SquarePen size={18} />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(user.id)}
+                            aria-label="Delete user"
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <Trash size={18} />
+                          </button>
+                        </>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -163,20 +177,24 @@ export default function GetUsers() {
                   <span className="font-semibold">Role:</span> {user.role}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
-                  <button
-                    onClick={() => handleEdit(user)}
-                    aria-label="Edit user"
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    <SquarePen size={18} />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(user.id)}
-                    aria-label="Delete user"
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <Trash size={18} />
-                  </button>
+                  {session && session.user?.role === 'SUPER_ADMIN' && (
+                    <>
+                      <button
+                        onClick={() => handleEdit(user)}
+                        aria-label="Edit user"
+                        className="text-blue-500 hover:text-blue-700"
+                      >
+                        <SquarePen size={18} />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(user.id)}
+                        aria-label="Delete user"
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <Trash size={18} />
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             ))}

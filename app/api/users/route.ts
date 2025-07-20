@@ -1,9 +1,14 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
+import { auth } from '@/auth'
 
 // POST /api/users to create a new user
-export const POST = async function (req: Request) {
+export const POST = auth(async function (req) {
+  if (!req.auth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
     const { name, email, password, role } = body
@@ -45,10 +50,14 @@ export const POST = async function (req: Request) {
       { status: 500 }
     )
   }
-}
+})
 
 // GET /api/users to get all users
-export const GET = async function () {
+export const GET = auth(async function (req) {
+  if (!req.auth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   try {
     const users = await prisma.users.findMany()
 
@@ -60,4 +69,4 @@ export const GET = async function () {
       { status: 500 }
     )
   }
-}
+})
