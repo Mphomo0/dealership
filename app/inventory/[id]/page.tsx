@@ -28,10 +28,10 @@ const trucks = [
     price: 45000,
     mileage: 12000,
     images: [
-      '/placeholder.svg?height=400&width=600',
-      '/placeholder.svg?height=400&width=600',
-      '/placeholder.svg?height=400&width=600',
-      '/placeholder.svg?height=400&width=600',
+      '/images/ford.jpg',
+      '/images/ford.jpg',
+      '/images/ford.jpg',
+      'images/ford.jpg',
     ],
     condition: 'Used',
     features: [
@@ -74,11 +74,7 @@ const trucks = [
     year: 2024,
     price: 52000,
     mileage: 5000,
-    images: [
-      '/placeholder.svg?height=400&width=600',
-      '/placeholder.svg?height=400&width=600',
-      '/placeholder.svg?height=400&width=600',
-    ],
+    images: ['/images/ford.jpg', '/images/ford.jpg', '/images/ford.jpg'],
     condition: 'Used',
     features: [
       '4WD',
@@ -113,30 +109,22 @@ const trucks = [
   },
 ]
 
-// ✅ Required for static generation of dynamic routes
-export async function generateStaticParams() {
-  return trucks.map((truck) => ({
-    id: truck.id.toString(),
-  }))
-}
-
-// ✅ Optional: ensures only defined paths are allowed
-export const dynamicParams = false
-
 interface PageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
-export default function TruckDetailPage({ params }: PageProps) {
-  const truck = trucks.find((t) => t.id === Number(params.id))
+export default async function TruckDetailPage({ params }: PageProps) {
+  const { id } = await params // Await the params Promise
+  const truck = trucks.find((t) => t.id === Number.parseInt(id))
 
-  if (!truck) notFound()
+  if (!truck) {
+    notFound()
+  }
 
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back Button */}
         <div className="mb-6">
           <Button asChild variant="outline">
             <Link href="/inventory">
@@ -147,12 +135,14 @@ export default function TruckDetailPage({ params }: PageProps) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
           <div className="lg:col-span-2">
+            {/* Images */}
             <div className="mb-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
                   <Image
-                    src={truck.images[0]}
+                    src={'/images/ford.jpg'}
                     alt={`${truck.year} ${truck.make} ${truck.model}`}
                     width={600}
                     height={400}
@@ -162,7 +152,7 @@ export default function TruckDetailPage({ params }: PageProps) {
                 {truck.images.slice(1, 3).map((image, index) => (
                   <Image
                     key={index}
-                    src={image}
+                    src={'/images/ford.jpg'}
                     alt={`${truck.year} ${truck.make} ${truck.model} - Image ${
                       index + 2
                     }`}
@@ -174,6 +164,7 @@ export default function TruckDetailPage({ params }: PageProps) {
               </div>
             </div>
 
+            {/* Vehicle Info */}
             <Card className="mb-8">
               <CardHeader>
                 <div className="flex justify-between items-start">
@@ -232,9 +223,63 @@ export default function TruckDetailPage({ params }: PageProps) {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Specifications */}
+            {/* <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>Specifications</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Engine</p>
+                    <p className="font-semibold">{truck.engine}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Drivetrain</p>
+                    <p className="font-semibold">{truck.drivetrain}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Exterior Color</p>
+                    <p className="font-semibold">{truck.exteriorColor}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Interior Color</p>
+                    <p className="font-semibold">{truck.interiorColor}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">MPG</p>
+                    <p className="font-semibold">{truck.mpg}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">VIN</p>
+                    <p className="font-semibold text-xs">{truck.vin}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card> */}
+
+            {/* Features */}
+            {/* <Card>
+              <CardHeader>
+                <CardTitle>Key Features</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {truck.keyFeatures.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card> */}
           </div>
 
+          {/* Sidebar */}
           <div className="lg:col-span-1">
+            {/* Price & Contact */}
             <Card className="mb-6 sticky top-24">
               <CardHeader>
                 <div className="text-center">
@@ -268,6 +313,20 @@ export default function TruckDetailPage({ params }: PageProps) {
               </CardContent>
             </Card>
 
+            {/* Warranty */}
+            {/* <Card className="mb-6">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-green-600" />
+                  Warranty
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">{truck.warranty}</p>
+              </CardContent>
+            </Card> */}
+
+            {/* Dealer Rating */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
