@@ -114,9 +114,7 @@ const trucks = [
 ]
 
 interface PageProps {
-  params: {
-    id: string
-  }
+  params: { id: string }
 }
 
 export default function TruckDetailPage({ params }: PageProps) {
