@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
-  Truck,
   ArrowLeft,
   Phone,
   Mail,
@@ -11,7 +10,6 @@ import {
   Gauge,
   Fuel,
   Settings,
-  Shield,
   Star,
 } from 'lucide-react'
 import Image from 'next/image'

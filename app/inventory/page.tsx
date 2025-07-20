@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Truck, Search, Filter } from 'lucide-react'
+import { Search, Filter } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
