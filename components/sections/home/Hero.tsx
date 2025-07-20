@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -16,7 +15,7 @@ export default function Hero() {
               Find the Right Truck for the Job
             </h1>
             <p className="text-xl mb-8 text-blue-100">
-              We are the commercial vehicle Specialists. We have over 20 years'
+              We are the commercial vehicle Specialists. We have over 20 years
               experience in selling quality previously owned commercial
               vehicles. We specialize in rigid trucks from 1.5 ton to 16 ton and
               source only the best stock that we can lay our hands on.

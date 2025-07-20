@@ -25,7 +25,7 @@ export default function TradeInForm() {
               </CardTitle>
               <p className="text-muted-foreground">
                 Fill out the form below to receive a comprehensive evaluation of
-                your vehicle's trade-in value.
+                your vehicle&lsquo;s trade-in value.
               </p>
             </CardHeader>
             <CardContent className="space-y-6">

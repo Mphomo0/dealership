@@ -1,7 +1,4 @@
 import Image from 'next/image'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import Link from 'next/link'
 
 export default function AboutSection() {
   return (
@@ -13,7 +10,7 @@ export default function AboutSection() {
               About A-Z Truck Sales
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              We are the commercial vehicle Specialists. We have over 20 years'
+              We are the commercial vehicle Specialists. We have over 20 years
               experience in selling quality previously owned commercial
               vehicles. We specialize in rigid trucks from 1.5 ton to 16 ton and
               source only the best stock that we can lay our hands on. We have a

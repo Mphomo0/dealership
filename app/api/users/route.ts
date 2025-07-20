@@ -42,7 +42,7 @@ export const POST = auth(async function (req) {
     })
 
     const { password: _, ...safeUser } = user
-    return NextResponse.json(user, { status: 201 })
+    return NextResponse.json(safeUser, { status: 201 })
   } catch (error) {
     console.error('User creation error:', error)
     return NextResponse.json(

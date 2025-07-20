@@ -1,5 +1,6 @@
 import { auth } from '@/auth'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default async function Profile() {
   const session = await auth()
@@ -19,10 +20,12 @@ export default async function Profile() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white rounded-lg shadow-md p-6 max-w-md text-center">
-        <img
+        <Image
           src="/profile.jpg"
           alt="Profile"
           className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+          width={128}
+          height={128}
         />
         <h1 className="text-2xl font-bold text-gray-800 mb-2">John Doe</h1>
         <p className="text-gray-600 mb-4">

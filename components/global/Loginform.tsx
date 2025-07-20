@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { signIn } from 'next-auth/react'
+import Image from 'next/image'
 
 // Password validation regex
 const passwordValidation = new RegExp(
@@ -61,7 +62,7 @@ export default function LoginForm() {
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         {/* Company Logo */}
         <div className="flex justify-center mb-6">
-          <img
+          <Image
             src="/images/logo.png"
             alt="Company Logo"
             className="h-auto w-40"

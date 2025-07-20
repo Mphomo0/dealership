@@ -1,9 +1,7 @@
 'use client'
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Phone, Mail, MapPin, Star, Truck, Shield, Wrench } from 'lucide-react'
-import Link from 'next/link'
+import { Phone, Mail, MapPin } from 'lucide-react'
 
 export default function AddressSection() {
   return (
