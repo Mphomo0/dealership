@@ -20,7 +20,7 @@ export default function AboutSection() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-amber-300">500+</div>
+                <div className="text-3xl font-bold text-amber-300">100+</div>
                 <div className="text-gray-600">Trucks in Stock</div>
               </div>
               <div className="text-center">

@@ -68,7 +68,7 @@ export default function Footer() {
             <br />
             Alberton, 1449
             <br />
-            Phone: 010 590 1563
+            Phone: 011 902 6071
             <br />
             Email: mi118@mweb.co.za
           </p>
@@ -84,7 +84,7 @@ export default function Footer() {
             <br />
             Phone: 083 234 5377
             <br />
-            Email: mi118@mweb.co.za
+            Email: aztruckboks@gmail.com
           </p>
         </div>
       </div>

@@ -14,14 +14,14 @@ export default function AddressSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader className="text-center">
               <Phone className="h-8 w-8 text-amber-300 mx-auto mb-2" />
               <CardTitle>Call Us</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-lg font-semibold">010 590 1563</p>
+              <p className="text-lg font-semibold">011 902 6071</p>
               <p className="text-gray-600">Mon-Fri: 8AM-5PM</p>
               <p className="text-gray-600">Sat-Sun: Closed</p>
             </CardContent>
@@ -32,20 +32,32 @@ export default function AddressSection() {
               <CardTitle>Email Us</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-lg font-semibold">mi118@mweb.co.za</p>
+              <p className="text-lg font-semibold">aztrucksales@mweb.co.za</p>
               <p className="text-gray-600">We respond within 24 hours</p>
             </CardContent>
           </Card>
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader className="text-center">
               <MapPin className="h-8 w-8 text-amber-300 mx-auto mb-2" />
-              <CardTitle>Visit Us</CardTitle>
+              <CardTitle>Alberton Branch</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-lg font-semibold">
                 9 Chrislou Cresent, Alberton North
               </p>
               <p className="text-gray-600">Alberton, Gauteng, 1449</p>
+            </CardContent>
+          </Card>
+          <Card className="hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="text-center">
+              <MapPin className="h-8 w-8 text-amber-300 mx-auto mb-2" />
+              <CardTitle>Boksburg Branch</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <p className="text-lg font-semibold">
+                Cnr Trichardts and, Ravenswood St, Ravenswood
+              </p>
+              <p className="text-gray-600">Boksburg, Gauteng, 1451</p>
             </CardContent>
           </Card>
         </div>

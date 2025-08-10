@@ -20,9 +20,7 @@ export default function TradeInForm() {
         <div className="max-w-4xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">
-                Get Your Trade-In Estimate
-              </CardTitle>
+              <CardTitle className="text-2xl">Get Your Estimate</CardTitle>
               <p className="text-muted-foreground">
                 Fill out the form below to receive a comprehensive evaluation of
                 your vehicle&lsquo;s trade-in value.
@@ -34,10 +32,10 @@ export default function TradeInForm() {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Vehicle Information</h3>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="year">Year</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select year" />
                       </SelectTrigger>
                       <SelectContent>
@@ -52,10 +50,10 @@ export default function TradeInForm() {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="make">Make</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select make" />
                       </SelectTrigger>
                       <SelectContent>
@@ -74,12 +72,12 @@ export default function TradeInForm() {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="model">Model</Label>
                     <Input id="model" placeholder="Enter model" />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="mileage">Mileage</Label>
                     <Input
                       id="mileage"
@@ -88,10 +86,10 @@ export default function TradeInForm() {
                     />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="condition">Overall Condition</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select condition" />
                       </SelectTrigger>
                       <SelectContent>
@@ -103,7 +101,7 @@ export default function TradeInForm() {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="vin">VIN (Optional)</Label>
                     <Input
                       id="vin"
@@ -116,17 +114,17 @@ export default function TradeInForm() {
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Contact Information</h3>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
                     <Input id="firstName" placeholder="Enter your first name" />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
                     <Input id="lastName" placeholder="Enter your last name" />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -135,7 +133,7 @@ export default function TradeInForm() {
                     />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
                       id="phone"
@@ -144,12 +142,12 @@ export default function TradeInForm() {
                     />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="preferredContact">
                       Preferred Contact Method
                     </Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="How would you like to be contacted?" />
                       </SelectTrigger>
                       <SelectContent>
@@ -160,10 +158,10 @@ export default function TradeInForm() {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="timeframe">Purchase Timeframe</Label>
                     <Select>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="When are you looking to purchase?" />
                       </SelectTrigger>
                       <SelectContent>
@@ -180,17 +178,17 @@ export default function TradeInForm() {
                 </div>
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="comments">Additional Comments</Label>
                 <Textarea
                   id="comments"
                   placeholder="Tell us about any recent repairs, modifications, or other details that might affect your vehicle's value..."
-                  rows={4}
+                  className="resize h-36"
                 />
               </div>
 
               <Button size="lg" className="w-full">
-                Get My Trade-In Estimate
+                Get My Estimate
               </Button>
 
               <p className="text-sm text-muted-foreground text-center">

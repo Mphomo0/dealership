@@ -18,7 +18,7 @@ import { signOut } from 'next-auth/react'
 const NavLinks = [
   { name: 'Home', href: '/' },
   { name: 'Inventory', href: '/inventory' },
-  { name: 'Trade-In', href: '/trade-in' },
+  { name: 'Sell-Your-Truck', href: '/sell-your-truck' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -91,8 +91,8 @@ export default function Navbar() {
                   <Link href="/dashboard/users">
                     <DropdownMenuItem>Users</DropdownMenuItem>
                   </Link>
-                  <Link href="/dashboard/inventory">
-                    <DropdownMenuItem>Inventory</DropdownMenuItem>
+                  <Link href="/dashboard/vehicles">
+                    <DropdownMenuItem>Vehicles</DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
@@ -154,7 +154,7 @@ export default function Navbar() {
                     <Link href="/dashboard/users">
                       <DropdownMenuItem>Users</DropdownMenuItem>
                     </Link>
-                    <Link href="/dashboard/inventory">
+                    <Link href="/dashboard/vehicles">
                       <DropdownMenuItem>Inventory</DropdownMenuItem>
                     </Link>
                     <DropdownMenuSeparator />

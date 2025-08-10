@@ -22,7 +22,7 @@ export default function CTA() {
             size="lg"
             className="text-accent-foreground border-accent-foreground hover:bg-accent-foreground hover:text-accent"
           >
-            <Link href="/trade-in">Start Your Trade-In</Link>
+            <Link href="/sell-your-truck">Sell Your Truck</Link>
           </Button>
         </div>
       </div>
