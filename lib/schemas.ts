@@ -1,5 +1,19 @@
 import { z } from 'zod/v4'
 
+export const contactFormSchema = z.object({
+  name: z.string().min(1, { error: 'Name is required' }),
+  phone: z.string().regex(
+    /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, // Regex for validating international and local phone numbers
+    {
+      message: 'Invalid phone number.',
+    }
+  ),
+  email: z.email({ error: 'Invalid email address' }),
+  branch: z.string().min(1, { message: 'Select a branch' }),
+  subject: z.string().min(1, { message: 'Subject is required' }),
+  message: z.string().min(10, { message: 'Message is required' }),
+})
+
 export const vehicleSchema = z.object({
   name: z
     .string()
@@ -30,4 +44,49 @@ export const vehicleSchema = z.object({
       fileId: z.string().min(1, 'File ID is required'),
     })
   ),
+})
+
+export const tradeInFormSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, { message: 'First name is required' })
+    .transform((val) => val.trim()),
+  lastName: z
+    .string()
+    .min(1, { message: 'Last name is required' })
+    .transform((val) => val.trim()),
+  email: z.email({ message: 'Invalid email address' }),
+  phone: z.string().regex(
+    /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, // Regex for validating international and local phone numbers
+    {
+      message: 'Invalid phone number.',
+    }
+  ),
+  preferredContact: z
+    .string()
+    .min(1, { message: 'Preferred contact method is required' }),
+  timeframe: z
+    .string()
+    .min(1, { message: 'Timeframe is required' })
+    .transform((val) => val.trim()),
+  year: z.string().min(1, { message: 'Please select your vehicle year' }),
+  make: z
+    .string()
+    .min(1, { message: 'Make is required' })
+    .transform((val) => val.trim()),
+  model: z
+    .string()
+    .min(1, { message: 'Model is required' })
+    .transform((val) => val.trim()),
+  mileage: z.string().min(1, { message: 'Mileage is required' }),
+  condition: z.string().min(1, { error: 'Condition is required' }),
+  vin: z
+    .string()
+    .min(1, { message: 'VIN is required' })
+    .transform((val) => val.trim())
+    .optional(),
+  comments: z
+    .string()
+    .min(10, { message: 'Comments must be at least 10 characters long' })
+    .transform((val) => val.trim()),
 })

@@ -43,7 +43,6 @@ model specials {
   id            String     @id @default(auto()) @map("_id") @db.ObjectId
   inventory     inventory  @relation(fields: [inventoryId], references: [id])
   inventoryId   String     @unique @db.ObjectId
-  discountType  DiscountType
   amount        Float      // either a percentage or fixed value, based on discountType
   validFrom     DateTime
   validTo       DateTime
@@ -66,9 +65,4 @@ enum Condition {
 enum Transmission {
   AUTOMATIC
   MANUAL
-}
-
-enum DiscountType {
-  PERCENTAGE
-  FIXED
 }

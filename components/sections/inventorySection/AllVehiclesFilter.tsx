@@ -363,7 +363,7 @@ export default function AllVehiclesFilter() {
                 key={truck.id}
                 className="overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <div className="relative">
+                <div className="relative -top-6">
                   <Image
                     src={truck.images[0]?.url || '/placeholder-truck.jpg'}
                     alt={`${truck.year} ${truck.make} ${truck.model}`}
@@ -376,7 +376,7 @@ export default function AllVehiclesFilter() {
                   </Badge>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-2">
+                  <h3 className="text-xl font-bold mb-2 -mt-10">
                     {truck.year} {truck.make.toUpperCase()}{' '}
                     {truck.model.toUpperCase()}
                   </h3>
@@ -425,7 +425,11 @@ export default function AllVehiclesFilter() {
             <p className="text-gray-500 text-lg mb-4">
               No trucks found matching your criteria.
             </p>
-            <Button onClick={clearFilters} variant="outline">
+            <Button
+              onClick={clearFilters}
+              variant="outline"
+              className="-mb-[20px]"
+            >
               Clear All Filters
             </Button>
           </div>

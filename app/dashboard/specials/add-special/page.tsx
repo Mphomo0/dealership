@@ -1,8 +1,8 @@
 import { auth } from '@/auth'
 import Link from 'next/link'
-import UserProfile from '@/components/sections/dashboardSection/usersSection/UserProfile'
+import CreateSpecial from '@/components/sections/dashboardSection/specials/CreateSpecial'
 
-export default async function Profile() {
+export default async function AddSpecial() {
   const session = await auth()
 
   if (!session) {
@@ -18,8 +18,8 @@ export default async function Profile() {
     )
   }
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <UserProfile />
+    <div className="bg-gray-50 min-h-screen p-4">
+      <CreateSpecial />
     </div>
   )
 }

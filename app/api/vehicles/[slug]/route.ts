@@ -23,10 +23,10 @@ interface UpdateVehicleBody {
 }
 
 // Get /api/vehicles/slug to fetch a vehicle by ID
-export async function GET(
+export const GET = async (
   req: Request,
   { params }: { params: { slug: string } }
-) {
+) => {
   const { slug } = await params
 
   try {

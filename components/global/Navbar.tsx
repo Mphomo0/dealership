@@ -19,6 +19,7 @@ const NavLinks = [
   { name: 'Home', href: '/' },
   { name: 'Inventory', href: '/inventory' },
   { name: 'Sell-Your-Truck', href: '/sell-your-truck' },
+  { name: 'Specials', href: '/specials' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -94,6 +95,9 @@ export default function Navbar() {
                   <Link href="/dashboard/vehicles">
                     <DropdownMenuItem>Vehicles</DropdownMenuItem>
                   </Link>
+                  <Link href="/dashboard/specials">
+                    <DropdownMenuItem>Specials</DropdownMenuItem>
+                  </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={handleLogout}
@@ -156,6 +160,9 @@ export default function Navbar() {
                     </Link>
                     <Link href="/dashboard/vehicles">
                       <DropdownMenuItem>Inventory</DropdownMenuItem>
+                    </Link>
+                    <Link href="/dashboard/specials">
+                      <DropdownMenuItem>Specials</DropdownMenuItem>
                     </Link>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
