@@ -14,7 +14,7 @@ interface UpdateSpecialsBody {
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   const { id } = await params
 
