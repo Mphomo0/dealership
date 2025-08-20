@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react'
 import GlobalWhatsAppButton from '@/components/global/GlobalWhatsAppButton'
 import Navbar from '@/components/global/Navbar'
 import Footer from '@/components/global/Footer'
+import { PostHogProvider } from './providers'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,11 +35,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
-          <Navbar />
-          {children}
-          <ToastContainer />
-          <Footer />
-          <GlobalWhatsAppButton />
+          <PostHogProvider>
+            <Navbar />
+            {children}
+            <ToastContainer />
+            <Footer />
+            <GlobalWhatsAppButton />
+          </PostHogProvider>
         </SessionProvider>
       </body>
     </html>
