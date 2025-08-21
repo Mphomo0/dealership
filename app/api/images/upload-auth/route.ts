@@ -19,11 +19,6 @@ export const GET = auth(async function (req) {
     token = uuidv4()
   }
 
-  // In the unlikely event of a collision, generate a new one
-  while (usedTokens.has(token)) {
-    token = uuidv4()
-  }
-
   // Clean up the cache occasionally to prevent memory leaks
   // Only keep the most recent 1000 tokens
   if (usedTokens.size > 1000) {
