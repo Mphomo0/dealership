@@ -14,10 +14,10 @@ interface UpdateSpecialsBody {
 }
 
 export const GET = async (
-  req: NextRequest,
-  context: { params: { slug: string } }
+  req: Request,
+  { params }: { params: Promise<{ slug: string }> }
 ) => {
-  const { slug } = context.params
+  const { slug } = await params
 
   try {
     const special = await prisma.specials.findUnique({
