@@ -8,9 +8,6 @@ interface UpdateSpecialsBody {
   validTo: string
   inventoryId: string
   slug: string
-  inventory: {
-    name: string
-  }
 }
 
 export const GET = async (
