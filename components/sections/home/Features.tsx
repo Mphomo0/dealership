@@ -10,7 +10,7 @@ export default function Features() {
             Why Choose A-Z Truck Sales?
           </h2>
           <p className="text-lg text-gray-600">
-            We&lsquo;re committed to providing the best truck buying experience
+            We&lsquo;re committed to the best Pre-Owned Truck buying experience
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

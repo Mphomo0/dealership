@@ -20,7 +20,7 @@ model users {
 }
 
 model inventory {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
   name              String
   make              String
   model             String
@@ -44,6 +44,7 @@ model specials {
   inventory     inventory  @relation(fields: [inventoryId], references: [id])
   inventoryId   String     @unique @db.ObjectId
   amount        Float      // either a percentage or fixed value, based on discountType
+  slug          String     @unique
   validFrom     DateTime
   validTo       DateTime
   createdAt     DateTime   @default(now())

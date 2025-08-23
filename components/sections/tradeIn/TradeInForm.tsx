@@ -41,9 +41,6 @@ export default function TradeInForm() {
     resolver: zodResolver(tradeInFormSchema),
     defaultValues: {
       preferredContact: '',
-      timeframe: '',
-      condition: '',
-      comments: '',
     },
   })
 
@@ -223,46 +220,6 @@ export default function TradeInForm() {
                         </p>
                       )}
                     </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="timeframe">Purchase Timeframe</Label>
-                      <Controller
-                        name="timeframe"
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value ? String(field.value) : ''}
-                          >
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="When are you looking to purchase?" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="immediate">
-                                Immediately
-                              </SelectItem>
-                              <SelectItem value="30days">
-                                Within 30 days
-                              </SelectItem>
-                              <SelectItem value="60days">
-                                Within 60 days
-                              </SelectItem>
-                              <SelectItem value="90days">
-                                Within 90 days
-                              </SelectItem>
-                              <SelectItem value="exploring">
-                                Just exploring
-                              </SelectItem>
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-                      {errors.timeframe && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.timeframe.message}
-                        </p>
-                      )}
-                    </div>
                   </div>
 
                   {/* Vehicle Information */}
@@ -325,51 +282,6 @@ export default function TradeInForm() {
                       {errors.mileage && (
                         <p className="text-red-500 text-sm mt-1">
                           {errors.mileage.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="condition">Overall Condition</Label>
-                      <Controller
-                        name="condition"
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
-                            <SelectTrigger className="w-full">
-                              <SelectValue placeholder="Select condition" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="excellent">
-                                Excellent
-                              </SelectItem>
-                              <SelectItem value="good">Good</SelectItem>
-                              <SelectItem value="fair">Fair</SelectItem>
-                              <SelectItem value="poor">Poor</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
-                      {errors.condition && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.condition.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="vin">VIN (Optional)</Label>
-                      <Input
-                        id="vin"
-                        placeholder="Enter VIN for more accurate estimate"
-                        {...register('vin')}
-                      />
-                      {errors.vin && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.vin.message}
                         </p>
                       )}
                     </div>
@@ -489,13 +401,7 @@ export default function TradeInForm() {
                     id="comments"
                     placeholder="Tell us about any recent repairs, modifications, or other details that might affect your vehicle's value..."
                     className="resize h-36"
-                    {...register('comments')}
                   />
-                  {errors.comments && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.comments.message}
-                    </p>
-                  )}
                 </div>
 
                 <Button size="lg" className="w-full" disabled={isSubmitting}>

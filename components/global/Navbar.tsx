@@ -18,8 +18,8 @@ import { signOut } from 'next-auth/react'
 const NavLinks = [
   { name: 'Home', href: '/' },
   { name: 'Inventory', href: '/inventory' },
-  { name: 'Sell-Your-Truck', href: '/sell-your-truck' },
   { name: 'Specials', href: '/specials' },
+  { name: 'Sell-Your-Truck', href: '/sell-your-truck' },
   { name: 'Contact', href: '/contact' },
 ]
 

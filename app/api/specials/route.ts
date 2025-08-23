@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { auth } from '@/auth'
+import slugify from 'slugify'
 
 // POST - Create a new special
 export const POST = auth(async (req) => {
@@ -29,6 +30,17 @@ export const POST = auth(async (req) => {
         { success: false, error: 'Inventory item not found' },
         { status: 404 }
       )
+    }
+
+    // Destructure values from inventory
+    const { make, model, year } = inventoryExists
+
+    // Generate unique slug
+    const baseSlug = slugify(`${make}-${model}-${year}`, { lower: true })
+    let slug = baseSlug
+    let counter = 1
+    while (await prisma.specials.findUnique({ where: { slug } })) {
+      slug = `${baseSlug}-${counter++}`
     }
 
     // Check if special already exists for this inventory
@@ -71,6 +83,7 @@ export const POST = auth(async (req) => {
       data: {
         inventoryId,
         amount: parseFloat(amount),
+        slug,
         validFrom: fromDate,
         validTo: toDate,
       },

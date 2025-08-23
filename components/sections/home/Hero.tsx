@@ -14,11 +14,8 @@ export default function Hero() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Find the Right Truck for the Job
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
-              We are the commercial vehicle Specialists. We have over 20 years
-              experience in selling quality previously owned commercial
-              vehicles. We specialize in rigid trucks from 1.5 ton to 16 ton and
-              source only the best stock that we can lay our hands on.
+            <p className="text-2xl mb-8 text-blue-100">
+              We Are Celebrating 25 Years Of Excellent Service
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button

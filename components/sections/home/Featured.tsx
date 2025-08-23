@@ -36,7 +36,6 @@ export default function Featured() {
     try {
       const res = await fetch('/api/vehicles/featured')
       const data = await res.json()
-      console.log('Fetched trucks:', data.trucks)
       setTrucks(data)
     } catch (error) {
       console.error('Error fetching trucks:', error)
@@ -46,13 +45,11 @@ export default function Featured() {
   useEffect(() => {
     fetchTrucks()
   }, [])
+
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Featured Trucks
-          </h2>
           <p className="text-lg text-gray-600">
             Check out our most popular vehicles
           </p>

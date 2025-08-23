@@ -17,6 +17,7 @@ import { Modal } from '@/components/global/Modal' // Import the Modal component
 interface Special {
   id: string
   amount: number
+  slug: string
   validFrom: string
   validTo: string
   inventoryId: string
@@ -52,14 +53,14 @@ export default function GetSpecials() {
   }, [])
 
   // Handle the deletion of a special
-  const handleDeleteSpecial = async (id: string) => {
+  const handleDeleteSpecial = async (slug: string) => {
     try {
-      const response = await fetch(`/api/specials/${id}`, {
+      const response = await fetch(`/api/specials/${slug}`, {
         method: 'DELETE',
       })
       if (response.ok) {
         setSpecials((prevSpecials) =>
-          prevSpecials.filter((special) => special.id !== id)
+          prevSpecials.filter((special) => special.slug !== slug)
         )
         toast.success('Special deleted successfully')
       } else {
@@ -86,7 +87,7 @@ export default function GetSpecials() {
   }) => {
     if (!currentSpecial) return
     try {
-      const response = await fetch(`/api/specials/${currentSpecial.id}`, {
+      const response = await fetch(`/api/specials/${currentSpecial.slug}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ export default function GetSpecials() {
         const { updatedSpecial } = await response.json()
         setSpecials((prevSpecials) =>
           prevSpecials.map((special) =>
-            special.id === currentSpecial.id
+            special.slug === currentSpecial.slug
               ? { ...special, ...updatedSpecial }
               : special
           )
@@ -153,7 +154,7 @@ export default function GetSpecials() {
           </TableHeader>
           <TableBody>
             {specials?.map((special) => (
-              <TableRow key={special.id}>
+              <TableRow key={special.slug}>
                 <TableCell>{special.inventory.name}</TableCell>
                 <TableCell>R{special.amount.toFixed(2)}</TableCell>
                 <TableCell>{formatDate(special.validFrom)}</TableCell>
@@ -162,7 +163,7 @@ export default function GetSpecials() {
                   <div className="flex items-center justify-center gap-3">
                     <button
                       className="text-red-500 hover:text-red-700"
-                      onClick={() => handleDeleteSpecial(special.id)}
+                      onClick={() => handleDeleteSpecial(special.slug)}
                       aria-label="Delete Special"
                     >
                       <Trash2 size={18} />
@@ -186,7 +187,7 @@ export default function GetSpecials() {
       <div className="md:hidden">
         <div className="grid grid-cols-1 gap-4">
           {specials.map((special) => (
-            <Card key={special.id} className="p-4 shadow-md rounded-lg">
+            <Card key={special.slug} className="p-4 shadow-md rounded-lg">
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-semibold text-gray-800">
                   {special.inventory.name}
@@ -203,7 +204,7 @@ export default function GetSpecials() {
                 <div className="flex gap-4 mt-3">
                   <button
                     className="text-red-500 hover:text-red-700"
-                    onClick={() => handleDeleteSpecial(special.id)}
+                    onClick={() => handleDeleteSpecial(special.slug)}
                     aria-label="Delete Special"
                   >
                     <Trash2 size={18} />

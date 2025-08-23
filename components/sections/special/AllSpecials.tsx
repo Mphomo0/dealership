@@ -17,6 +17,7 @@ interface Image {
 interface Special {
   id: string
   amount: number
+  slug: number
   validFrom: string
   validTo: string
   inventoryId: string
@@ -67,7 +68,7 @@ export default function AllSpecials() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {specials.map((special) => (
           <Card
-            key={special.id}
+            key={special.slug}
             className="overflow-hidden hover:shadow-lg transition-shadow"
           >
             <div className="relative -top-6">
@@ -118,9 +119,7 @@ export default function AllSpecials() {
                 </Badge>
               </div>
               <Button asChild className="w-full">
-                <Link href={`/inventory/${special.inventory.slug}`}>
-                  View Details
-                </Link>
+                <Link href={`/specials/${special.slug}`}>View Details</Link>
               </Button>
             </CardContent>
           </Card>

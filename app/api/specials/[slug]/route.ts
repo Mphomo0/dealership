@@ -7,6 +7,7 @@ interface UpdateSpecialsBody {
   validFrom: string
   validTo: string
   inventoryId: string
+  slug: string
   iventory: {
     name: string
   }
@@ -14,13 +15,16 @@ interface UpdateSpecialsBody {
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { slug: string } }
 ) => {
-  const { id } = await params
+  const { slug } = params
 
   try {
     const special = await prisma.specials.findUnique({
-      where: { id: id },
+      where: { slug },
+      include: {
+        inventory: true,
+      },
     })
 
     if (!special) {
@@ -38,12 +42,12 @@ export const DELETE = auth(async (req, ctx) => {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const { id } = await ctx.params // Get id from the URL params
+  const { slug } = await ctx.params // Get id from the URL params
 
   try {
     // Attempt to delete the special by ID
     const special = await prisma.specials.delete({
-      where: { id },
+      where: { slug },
     })
 
     // If the special is not found, this will throw and be caught below
@@ -70,7 +74,7 @@ export const PATCH = auth(async (req, ctx) => {
   if (!req.auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const { id } = await ctx.params
+  const { slug } = await ctx.params
 
   try {
     const body: UpdateSpecialsBody = await req.json()
@@ -88,7 +92,7 @@ export const PATCH = auth(async (req, ctx) => {
 
     // Ensure the special exists first (for checking old name/slug)
     const existingSpecial = await prisma.specials.findUnique({
-      where: { id },
+      where: { slug },
     })
 
     if (!existingSpecial) {
@@ -128,7 +132,7 @@ export const PATCH = auth(async (req, ctx) => {
 
     // Update the vehicle
     const updatedSpecial = await prisma.specials.update({
-      where: { id },
+      where: { slug },
       data: updateData,
       include: {
         inventory: true, // Include related inventory data in response

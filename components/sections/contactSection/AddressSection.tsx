@@ -10,7 +10,7 @@ export default function AddressSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <p className="text-lg text-gray-600">
-            Ready to find your perfect truck? Get in touch with us today!
+            Ready to purchase your perfect truck? Get in touch with us today!
           </p>
         </div>
 
@@ -22,6 +22,8 @@ export default function AddressSection() {
             </CardHeader>
             <CardContent className="text-center">
               <p className="text-lg font-semibold">011 902 6071</p>
+              <p className="text-lg font-semibold">Aberton: 078 127 7393</p>
+              <p className="text-lg font-semibold">Boksburg: 083 234 5377</p>
               <p className="text-gray-600">Mon-Fri: 8AM-5PM</p>
               <p className="text-gray-600">Sat-Sun: Closed</p>
             </CardContent>

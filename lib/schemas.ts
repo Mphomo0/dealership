@@ -1,17 +1,17 @@
 import { z } from 'zod/v4'
 
 export const contactFormSchema = z.object({
-  name: z.string().min(1, { error: 'Name is required' }),
+  name: z.string().min(1, { message: 'Name is required' }),
   phone: z.string().regex(
     /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, // Regex for validating international and local phone numbers
     {
       message: 'Invalid phone number.',
     }
   ),
-  email: z.email({ error: 'Invalid email address' }),
+  email: z.string().email({ message: 'Invalid email address' }),
   branch: z.string().min(1, { message: 'Select a branch' }),
   subject: z.string().min(1, { message: 'Subject is required' }),
-  message: z.string().min(10, { message: 'Message is required' }),
+  message: z.string().min(1, { message: 'Message is required' }),
 })
 
 export const vehicleSchema = z.object({
@@ -65,10 +65,6 @@ export const tradeInFormSchema = z.object({
   preferredContact: z
     .string()
     .min(1, { message: 'Preferred contact method is required' }),
-  timeframe: z
-    .string()
-    .min(1, { message: 'Timeframe is required' })
-    .transform((val) => val.trim()),
   year: z.string().min(1, { message: 'Please select your vehicle year' }),
   make: z
     .string()
@@ -79,14 +75,4 @@ export const tradeInFormSchema = z.object({
     .min(1, { message: 'Model is required' })
     .transform((val) => val.trim()),
   mileage: z.string().min(1, { message: 'Mileage is required' }),
-  condition: z.string().min(1, { error: 'Condition is required' }),
-  vin: z
-    .string()
-    .min(1, { message: 'VIN is required' })
-    .transform((val) => val.trim())
-    .optional(),
-  comments: z
-    .string()
-    .min(10, { message: 'Comments must be at least 10 characters long' })
-    .transform((val) => val.trim()),
 })
