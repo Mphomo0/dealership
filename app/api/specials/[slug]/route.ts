@@ -74,12 +74,12 @@ export const PATCH = auth(async (req, ctx) => {
   if (!req.auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
+
   const { slug } = await ctx.params
 
   try {
     const body: UpdateSpecialsBody = await req.json()
 
-    // Validate required fields
     if (!body.amount || !body.validFrom || !body.validTo || !body.inventoryId) {
       return NextResponse.json(
         {
@@ -90,7 +90,6 @@ export const PATCH = auth(async (req, ctx) => {
       )
     }
 
-    // Ensure the special exists first (for checking old name/slug)
     const existingSpecial = await prisma.specials.findUnique({
       where: { slug },
     })
@@ -99,7 +98,6 @@ export const PATCH = auth(async (req, ctx) => {
       return NextResponse.json({ error: 'Special not found' }, { status: 404 })
     }
 
-    // Verify that the inventory exists
     const inventoryExists = await prisma.inventory.findUnique({
       where: { id: body.inventoryId },
     })
@@ -111,7 +109,6 @@ export const PATCH = auth(async (req, ctx) => {
       )
     }
 
-    // Validate dates
     const validFrom = new Date(body.validFrom)
     const validTo = new Date(body.validTo)
 
@@ -122,7 +119,6 @@ export const PATCH = auth(async (req, ctx) => {
       )
     }
 
-    // Build the update payload
     const updateData = {
       amount: body.amount,
       validFrom: validFrom,
@@ -130,13 +126,10 @@ export const PATCH = auth(async (req, ctx) => {
       inventoryId: body.inventoryId,
     }
 
-    // Update the vehicle
     const updatedSpecial = await prisma.specials.update({
       where: { slug },
       data: updateData,
-      include: {
-        inventory: true, // Include related inventory data in response
-      },
+      include: { inventory: true },
     })
 
     return NextResponse.json({ updatedSpecial }, { status: 200 })
@@ -151,7 +144,6 @@ export const PATCH = auth(async (req, ctx) => {
         )
       }
 
-      // Handle Prisma foreign key constraint errors
       if (error.message.includes('Foreign key constraint')) {
         return NextResponse.json(
           { error: 'Invalid inventory reference' },
