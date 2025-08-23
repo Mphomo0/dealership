@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const total = await prisma.inventory.count()
 
-    const numToFetch = 3
+    const numToFetch = 30
     const randomIndexes = new Set<number>()
     while (randomIndexes.size < Math.min(numToFetch, total)) {
       randomIndexes.add(Math.floor(Math.random() * total))

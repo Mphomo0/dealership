@@ -8,7 +8,7 @@ export default function Footer() {
         <div>
           <h2 className="text-xl font-bold text-white mb-4">A-Z Truck Sales</h2>
           <p className="text-sm">
-            Trusted commercial vehicle specialists with over 20 years of
+            Trusted commercial vehicle specialists with over 25 years of
             experience. Proudly rated 4.1 for quality and service.
           </p>
 

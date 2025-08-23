@@ -30,6 +30,8 @@ interface Vehicle {
   condition: string
   transmission: string
   description?: string
+  bodyType: string
+  truckSize: string
   featured: string
   slug: string
   images: VehicleImage[]
@@ -346,6 +348,67 @@ export default function EditVehicle() {
               {errors.transmission && (
                 <p className="text-red-500 text-sm">
                   {errors.transmission.message}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="mb-4 space-y-2">
+              <Label>Body Type</Label>
+              <select
+                id="bodyType"
+                {...register('bodyType')}
+                className="w-full p-2 border rounded"
+              >
+                <option value="">Select Body Type</option>
+                <option value="Bower Truck">Bower Truck</option>
+                <option value="Cage">Cage</option>
+                <option value="Cattle Body">Cattle Body</option>
+                <option value="Chassis Cab">Chassis Cab</option>
+                <option value="Cherry Picker Truck">Cherry Picker Truck</option>
+                <option value="Crane Truck">Crane Truck</option>
+                <option value="Curtain Side Truck">Curtain Side Truck</option>
+                <option value="Dropside Truck">Dropside Truck</option>
+                <option value="Fire Fighting Unit">Fire Fighting Unit</option>
+                <option value="Flatbed">Flatbed</option>
+                <option value="Honey Sucker">Honey Sucker</option>
+                <option value="Hooklift">Hooklift</option>
+                <option value="Insulated Body">Insulated Body</option>
+                <option value="Mass Side">Mass Side</option>
+                <option value="Other Specialized">Other Specialized</option>
+                <option value="Refrigerated Body">Refrigerated Body</option>
+                <option value="Roll Back">Roll Back</option>
+                <option value="Skip Loader">Skip Loader</option>
+                <option value="Tanker">Tanker</option>
+                <option value="Tipper Truck">Tipper Truck</option>
+                <option value="Truck Tractor">Truck Tractor</option>
+                <option value="Volume Body">Volume Body</option>
+              </select>
+              {errors.bodyType && (
+                <p className="text-red-500 text-sm">
+                  {errors.bodyType.message}
+                </p>
+              )}
+            </div>
+            <div className="mb-4 space-y-2">
+              <Label>Truck Size</Label>
+              <select
+                id="truckSize"
+                {...register('truckSize')}
+                className="w-full p-2 border rounded"
+              >
+                <option value="">Select Truck Size</option>
+                <option value="1 to 2.5 Ton">1 to 2.5 Ton</option>
+                <option value="3 to 5 Ton">3 to 5 Ton</option>
+                <option value="6 to 7 Ton">6 to 7 Ton</option>
+                <option value="8 to 9 Ton">8 to 9 Ton</option>{' '}
+                <option value="10 to 18 Ton">10 to 18 Ton</option>
+                <option value="18 to 35 Ton">18 to 35 Ton</option>
+              </select>
+              {errors.truckSize && (
+                <p className="text-red-500 text-sm">
+                  {errors.truckSize.message}
                 </p>
               )}
             </div>

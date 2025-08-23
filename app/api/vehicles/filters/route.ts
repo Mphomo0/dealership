@@ -25,35 +25,27 @@ export const GET = async (req: NextRequest) => {
       },
     })
 
-    // Get all unique years
-    const years = await prisma.inventory.findMany({
+    // Get all unique body types
+    const bodyTypes = await prisma.inventory.findMany({
       select: {
-        year: true,
+        bodyType: true,
       },
-      distinct: ['year'],
-      orderBy: {
-        year: 'desc',
-      },
+      distinct: ['bodyType'],
     })
 
-    // Get price ranges
-    const priceRange = await prisma.inventory.aggregate({
-      _min: {
-        vatPrice: true,
+    // Get all unique truck sizes
+    const truckSizes = await prisma.inventory.findMany({
+      select: {
+        truckSize: true,
       },
-      _max: {
-        vatPrice: true,
-      },
+      distinct: ['truckSize'],
     })
 
     const filterOptions = {
       makes: makes.map((item) => item.make).filter(Boolean),
       models: models.map((item) => item.model).filter(Boolean),
-      years: years.map((item) => item.year).filter(Boolean),
-      priceRanges: {
-        min: priceRange._min.vatPrice || 0,
-        max: priceRange._max.vatPrice || 0,
-      },
+      bodyTypes: bodyTypes.map((item) => item.bodyType).filter(Boolean),
+      truckSizes: truckSizes.map((item) => item.truckSize).filter(Boolean),
     }
 
     return NextResponse.json(filterOptions, { status: 200 })

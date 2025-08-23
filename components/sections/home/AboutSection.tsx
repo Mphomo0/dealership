@@ -10,9 +10,9 @@ export default function AboutSection() {
               About A-Z Truck Sales
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              We are the commercial vehicle Specialists. We have over 20 years
+              We are the commercial vehicle Specialists. We have over 25 years
               experience in selling quality previously owned commercial
-              vehicles. We specialize in rigid trucks from 1.5 ton to 16 ton and
+              vehicles. We specialize in rigid trucks from 1.5 ton to 18 ton and
               source only the best stock that we can lay our hands on. We have a
               complete workshop where we service and restore our vehicles before
               putting them up for sale.
@@ -24,18 +24,19 @@ export default function AboutSection() {
                 <div className="text-gray-600">Trucks in Stock</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-amber-300">20+</div>
+                <div className="text-3xl font-bold text-amber-300">25+</div>
                 <div className="text-gray-600">Years Experience</div>
               </div>
             </div>
           </div>
           <div>
             <Image
-              src="/images/dealer.webp"
+              src="/images/workshop.jpg"
               alt="Dealership Image"
               width={500}
               height={400}
               className="w-full h-full rounded-lg shadow-lg"
+              priority
             />
           </div>
         </div>

@@ -8,7 +8,7 @@ export const contactFormSchema = z.object({
       message: 'Invalid phone number.',
     }
   ),
-  email: z.string().email({ message: 'Invalid email address' }),
+  email: z.email({ message: 'Invalid email address' }),
   branch: z.string().min(1, { message: 'Select a branch' }),
   subject: z.string().min(1, { message: 'Subject is required' }),
   message: z.string().min(1, { message: 'Message is required' }),
@@ -36,7 +36,15 @@ export const vehicleSchema = z.object({
   transmission: z.string().min(1, 'Transmission type is required'),
   description: z
     .string()
-    .min(10, 'Description must be at least 10 characters long')
+    .min(1, 'Enter Your Description')
+    .transform((val) => val.trim()),
+  bodyType: z
+    .string()
+    .min(1, 'Enter Your Truck Body Type')
+    .transform((val) => val.trim()),
+  truckSize: z
+    .string()
+    .min(1, 'Enter Your Truck Size')
     .transform((val) => val.trim()),
   images: z.array(
     z.object({

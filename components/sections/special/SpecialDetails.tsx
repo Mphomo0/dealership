@@ -54,7 +54,7 @@ interface Inventory {
 interface Special {
   id: string
   amount: number
-  slug: number
+  slug: string
   validFrom: string
   validTo: string
   inventoryId: string
@@ -97,7 +97,6 @@ export default function SpecialDetails() {
         const res = await fetch(`/api/specials/${slug}`)
         const data = await res.json()
         if (!res.ok) throw new Error('Special not found')
-        console.log(data.special)
         setSpecial(data.special)
       } catch (error) {
         console.error('Error fetching Special:', error)

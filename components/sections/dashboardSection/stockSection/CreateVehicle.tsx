@@ -239,7 +239,6 @@ export default function CreateVehicle() {
                     <SelectContent>
                       <SelectItem value="diesel">Diesel</SelectItem>
                       <SelectItem value="petrol">Petrol</SelectItem>
-                      <SelectItem value="electric">Electric</SelectItem>
                     </SelectContent>
                   </Select>
                 )}
@@ -291,6 +290,91 @@ export default function CreateVehicle() {
               />
               {errors.transmission && (
                 <p className="text-red-500">{errors.transmission.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="mb-4 space-y-2">
+              <Label>Body Type</Label>
+              <Controller
+                control={control}
+                name="bodyType"
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select Condition" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Bower Truck">Bower Truck</SelectItem>
+                      <SelectItem value="Cage">Cage</SelectItem>
+                      <SelectItem value="Cattle Body">Cattle Body</SelectItem>
+                      <SelectItem value="Chassis Cab">Chassis Cab</SelectItem>
+                      <SelectItem value="Cherry Picker Truck">
+                        Cherry Picker Truck
+                      </SelectItem>
+                      <SelectItem value="Crane Truck">Crane Truck</SelectItem>
+                      <SelectItem value="Curtain Side Truck">
+                        Curtain Side Truck
+                      </SelectItem>
+                      <SelectItem value="Dropside Truck">
+                        Dropside Truck
+                      </SelectItem>
+                      <SelectItem value="Fire Fighting Unit">
+                        Fire Fighting Unit
+                      </SelectItem>
+                      <SelectItem value="Flatbed">Flatbed</SelectItem>
+                      <SelectItem value="Honey Sucker">Honey Sucker</SelectItem>
+                      <SelectItem value="Hooklift">Hooklift</SelectItem>
+                      <SelectItem value="Insulated Body">
+                        Insulated Body
+                      </SelectItem>
+                      <SelectItem value="Mass Side">Mass Side</SelectItem>
+                      <SelectItem value="Other Specialized">
+                        Other Specialized
+                      </SelectItem>
+                      <SelectItem value="Refrigerated Body">
+                        Refrigerated Body
+                      </SelectItem>
+                      <SelectItem value="Roll Back">Roll Back</SelectItem>
+                      <SelectItem value="Skip Loader">Skip Loader</SelectItem>
+                      <SelectItem value="Tanker">Tanker</SelectItem>
+                      <SelectItem value="Tipper Truck">Tipper Truck</SelectItem>
+                      <SelectItem value="Truck Tractor">
+                        Truck Tractor
+                      </SelectItem>
+                      <SelectItem value="Volume Body">Volume Body</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.bodyType && (
+                <p className="text-red-500">{errors.bodyType.message}</p>
+              )}
+            </div>
+            <div className="mb-4 space-y-2">
+              <Label>Truck Size</Label>
+              <Controller
+                control={control}
+                name="truckSize"
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select Transmission" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1 to 2.5 Ton">1 to 2.5 Ton</SelectItem>
+                      <SelectItem value="3 to 5 Ton">3 to 5 Ton</SelectItem>
+                      <SelectItem value="6 to 7 Ton">6 to 7 Ton</SelectItem>
+                      <SelectItem value="8 to 9 Ton">8 to 9 Ton</SelectItem>
+                      <SelectItem value="10 to 18 Ton">10 to 18 Ton</SelectItem>
+                      <SelectItem value="18 to 35 Ton">18 to 35 Ton</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.truckSize && (
+                <p className="text-red-500">{errors.truckSize.message}</p>
               )}
             </div>
           </div>

@@ -8,16 +8,16 @@ interface UpdateSpecialsBody {
   validTo: string
   inventoryId: string
   slug: string
-  iventory: {
+  inventory: {
     name: string
   }
 }
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) => {
-  const { slug } = params
+  const { slug } = context.params
 
   try {
     const special = await prisma.specials.findUnique({

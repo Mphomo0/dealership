@@ -6,14 +6,13 @@ import slugify from 'slugify'
 interface Filters {
   make?: string
   model?: string
-  year?: number
-  vatPrice?: {
-    gte?: number
-    lte?: number
-  }
+  bodyType?: string
+  truckSize?: string
   OR?: Array<{
     make?: { contains: string; mode: 'insensitive' }
     model?: { contains: string; mode: 'insensitive' }
+    bodyType?: { contains: string; mode: 'insensitive' }
+    truckSize?: { contains: string; mode: 'insensitive' }
   }>
 }
 
@@ -39,6 +38,8 @@ export const POST = auth(async (req) => {
       transmission,
       images,
       description,
+      bodyType,
+      truckSize,
     } = body
 
     const requiredFields = [
@@ -50,6 +51,8 @@ export const POST = auth(async (req) => {
       pricenoVat,
       condition,
       description,
+      bodyType,
+      truckSize,
     ]
 
     if (requiredFields.some((field) => field === undefined || field === '')) {
@@ -135,6 +138,8 @@ export const POST = auth(async (req) => {
         condition: upperCondition,
         transmission: upperTransmission,
         description,
+        bodyType,
+        truckSize,
         slug,
         images,
       },
@@ -157,15 +162,14 @@ export const GET = async (req: NextRequest) => {
     const { searchParams } = new URL(req.url)
 
     const page = Number.parseInt(searchParams.get('page') || '1', 10)
-    const limit = Number.parseInt(searchParams.get('limit') || '10', 10)
+    const limit = Number.parseInt(searchParams.get('limit') || '50', 10)
     const skip = (page - 1) * limit
 
     // Filter parameters
     const make = searchParams.get('make')
     const model = searchParams.get('model')
-    const year = searchParams.get('year')
-    const minPrice = searchParams.get('minPrice')
-    const maxPrice = searchParams.get('maxPrice')
+    const bodyType = searchParams.get('bodyType')
+    const truckSize = searchParams.get('truckSize')
     const search = searchParams.get('search')
     const sort = searchParams.get('sort') || 'createdAt'
     const order = searchParams.get('order') || 'desc'
@@ -187,43 +191,25 @@ export const GET = async (req: NextRequest) => {
       filters.model = { equals: model, mode: 'insensitive' } as any
     }
 
-    const yearNumber = Number.parseInt(year || '')
-    if (!isNaN(yearNumber)) filters.year = yearNumber
+    if (bodyType && bodyType !== 'all') {
+      filters.bodyType = { equals: bodyType, mode: 'insensitive' } as any
+    }
+
+    if (truckSize && truckSize !== 'all') {
+      filters.truckSize = { equals: truckSize, mode: 'insensitive' } as any
+    }
 
     // Handle search term (searches both make and model)
     if (search) {
       filters.OR = [
         { make: { contains: search, mode: 'insensitive' } },
         { model: { contains: search, mode: 'insensitive' } },
+        { bodyType: { contains: search, mode: 'insensitive' } },
+        { truckSize: { contains: search, mode: 'insensitive' } },
       ]
       // Remove individual make/model filters when searching
       delete filters.make
       delete filters.model
-    }
-
-    // Handle price filtering
-    if (minPrice || maxPrice) {
-      filters.vatPrice = {}
-
-      if (minPrice) {
-        const min = Number.parseFloat(minPrice)
-        if (!isNaN(min)) {
-          filters.vatPrice.gte = min
-        }
-      }
-
-      if (maxPrice && maxPrice !== 'plus') {
-        const max = Number.parseFloat(maxPrice)
-        if (!isNaN(max)) {
-          filters.vatPrice.lte = max
-        }
-      }
-    }
-
-    // Convert price filter to vatPrice for Prisma
-    if (filters.vatPrice) {
-      filters.vatPrice = filters.vatPrice
-      delete filters.vatPrice
     }
 
     const total = await prisma.inventory.count({ where: filters })
