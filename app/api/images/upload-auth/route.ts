@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 //Create a token cache to prevent reuse
 const usedTokens = new Set()
 
-export const GET = auth(async function (req): Promise<Response> {
+export const GET = auth(async (req): Promise<Response> => {
   if (!req.auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
