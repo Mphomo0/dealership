@@ -67,11 +67,12 @@ export const DELETE = auth(async (req, ctx) => {
 })
 
 // PATCH /api/specials/slug to update a special by ID
-export const PATCH = async (
-  req: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) => {
-  const { slug } = await params
+export const PATCH = auth(async (req, ctx) => {
+  if (!req.auth) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const { slug } = await ctx.params
 
   try {
     const body: UpdateSpecialsBody = await req.json()
@@ -198,4 +199,4 @@ export const PATCH = async (
       { status: 500 }
     )
   }
-}
+})
