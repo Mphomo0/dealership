@@ -106,38 +106,83 @@ export const PATCH = auth(async (req, ctx) => {
       )
     }
 
-    const validFrom = new Date(body.validFrom)
-    const validTo = new Date(body.validTo)
+    // Validate date logic
+    const validFromDate = new Date(body.validFrom)
+    const validToDate = new Date(body.validTo)
 
-    if (validFrom >= validTo) {
+    if (validFromDate >= validToDate) {
       return NextResponse.json(
         { error: 'validFrom must be before validTo' },
         { status: 400 }
       )
     }
 
-    const updateData = {
-      amount: body.amount,
-      validFrom: validFrom,
-      validTo: validTo,
-      inventoryId: body.inventoryId,
+    // Validate amount is positive
+    if (body.amount <= 0) {
+      return NextResponse.json(
+        { error: 'Amount must be greater than 0' },
+        { status: 400 }
+      )
     }
 
-    const updatedSpecial = await prisma.specials.update({
-      where: { slug },
-      data: updateData,
-      include: { inventory: true },
+    // Check for overlapping specials for the same inventory item
+    const overlappingSpecials = await prisma.specials.findMany({
+      where: {
+        inventoryId: body.inventoryId,
+        slug: {
+          not: slug, // Exclude current special
+        },
+        OR: [
+          {
+            validFrom: {
+              lte: validToDate,
+            },
+            validTo: {
+              gte: validFromDate,
+            },
+          },
+        ],
+      },
     })
 
-    return NextResponse.json({ updatedSpecial }, { status: 200 })
+    if (overlappingSpecials.length > 0) {
+      return NextResponse.json(
+        {
+          error:
+            'Special dates overlap with existing specials for this inventory item',
+        },
+        { status: 409 }
+      )
+    }
+
+    // Update the special
+    const updatedSpecial = await prisma.specials.update({
+      where: { slug },
+      data: {
+        amount: body.amount,
+        validFrom: validFromDate,
+        validTo: validToDate,
+        inventoryId: body.inventoryId,
+        updatedAt: new Date(),
+      },
+      include: {
+        inventory: true,
+      },
+    })
+
+    return NextResponse.json({
+      message: 'Special updated successfully',
+      special: updatedSpecial,
+    })
   } catch (error) {
     console.error('Error updating special:', error)
 
+    // Handle Prisma-specific errors
     if (error instanceof Error) {
-      if (error.message.includes('Record to update does not exist')) {
+      if (error.message.includes('Unique constraint')) {
         return NextResponse.json(
-          { error: 'Special not found' },
-          { status: 404 }
+          { error: 'A special with this slug already exists' },
+          { status: 409 }
         )
       }
 
@@ -149,6 +194,9 @@ export const PATCH = auth(async (req, ctx) => {
       }
     }
 
-    return NextResponse.json({ error: 'Update failed' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 })
