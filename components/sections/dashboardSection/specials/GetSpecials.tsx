@@ -99,13 +99,7 @@ export default function GetSpecials() {
       })
       if (response.ok) {
         const { updatedSpecial } = await response.json()
-        setSpecials((prevSpecials) =>
-          prevSpecials.map((special) =>
-            special.slug === currentSpecial.slug
-              ? { ...special, ...updatedSpecial }
-              : special
-          )
-        )
+        await GetAllSpecials()
         toast.success('Special updated successfully')
       } else {
         const errorData = await response.json()

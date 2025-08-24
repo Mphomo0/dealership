@@ -82,6 +82,7 @@ export default function Featured() {
                       width={400}
                       height={300}
                       className="w-full h-48 object-cover"
+                      priority
                     />
                     <Badge className="absolute top-2 right-2 bg-amber-600">
                       {truck.condition}

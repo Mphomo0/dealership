@@ -310,19 +310,12 @@ export default function TruckDetail() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Button
-                  className="w-full py-4"
-                  size="lg"
-                  onClick={() => (window.location.href = 'tel:(011) 902-6071')}
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call (011) 902-6071
-                </Button>
+                <WhatsAppButton />
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
                       variant="outline"
-                      className="w-full bg-transparent"
+                      className="w-full bg-transparent mt-4"
                       size="lg"
                     >
                       <Mail className="h-4 w-4 mr-2" />
@@ -339,7 +332,14 @@ export default function TruckDetail() {
                     <EnquiryForm vehicleName={vehicle.name} />
                   </DialogContent>
                 </Dialog>
-                <WhatsAppButton />
+                <Button
+                  className="w-full py-4"
+                  size="lg"
+                  onClick={() => (window.location.href = 'tel:(011) 902-6071')}
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call (011) 902-6071
+                </Button>
               </CardContent>
             </Card>
 

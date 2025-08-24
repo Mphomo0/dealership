@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 // Define the Special type if not imported from elsewhere
 export interface Special {
@@ -28,6 +28,8 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   if (!isOpen) return null
 
+  const [submitting, setSubmitting] = useState(false)
+
   // Format dates for input fields (YYYY-MM-DD)
   const formatDateForInput = (dateString: string | undefined) => {
     if (!dateString) return ''
@@ -35,8 +37,10 @@ export const Modal: FC<ModalProps> = ({
     return date.toISOString().split('T')[0]
   }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
+    setSubmitting(true)
+
     const formData = new FormData(event.target as HTMLFormElement)
     const data = {
       amount: parseFloat(formData.get('amount') as string),
@@ -44,7 +48,12 @@ export const Modal: FC<ModalProps> = ({
       validTo: (formData.get('validTo') as string) || '',
       inventoryId: initialData.inventoryId || '',
     }
-    onSubmit(data)
+
+    try {
+      await onSubmit(data) // Make sure `onSubmit` returns a Promise
+    } finally {
+      setSubmitting(false) // Optional if the modal will close
+    }
   }
 
   // Get today's date
@@ -103,14 +112,16 @@ export const Modal: FC<ModalProps> = ({
               type="button"
               onClick={onClose}
               className="bg-gray-500 text-white px-4 py-2 rounded"
+              disabled={submitting}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-black text-white px-4 py-2 rounded"
+              className="bg-black text-white px-4 py-2 rounded disabled:opacity-50"
+              disabled={submitting}
             >
-              Save Changes
+              {submitting ? 'Saving...' : 'Save Changes'}
             </button>
           </div>
         </form>

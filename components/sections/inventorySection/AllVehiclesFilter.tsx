@@ -316,6 +316,7 @@ export default function AllVehiclesFilter() {
                       width={400}
                       height={300}
                       className="w-full h-48 object-cover"
+                      priority
                     />
                     <Badge className="absolute top-2 right-2 bg-amber-600">
                       {truck.condition}
@@ -328,7 +329,8 @@ export default function AllVehiclesFilter() {
                     </h3>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-2xl font-bold text-yellow-600">
-                        R{truck.vatPrice.toLocaleString()}
+                        R{truck.vatPrice.toLocaleString()}{' '}
+                        <span className="text-sm">incl. VAT</span>
                       </span>
                       <span className="text-gray-600 flex items-center">
                         <Gauge size={18} className="mr-1" />
