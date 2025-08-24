@@ -67,7 +67,7 @@ export const DELETE = auth(async (req, ctx) => {
 })
 
 // PATCH /api/specials/slug to update a special by ID
-export const PATCH = auth(async (req, ctx) => {
+export const PATCH = auth(async (req, ctx): Promise<Response> => {
   if (!req.auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
